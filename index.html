@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Керемет — центр обслуживания студентов КазНУ (концепт)</title>
+  <meta name="description" content="Все студенческие услуги КазНУ в одном окне: справки, транскрипт, академический отпуск, стипендия, медицина и быт. Найдите услугу и узнайте, куда обратиться.">
+  <!-- Концепт: не индексируем, чтобы не конкурировать с официальным keremet.kaznu.kz -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0F2442">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://olop4ik.github.io/keremet-concept/">
+  <meta property="og:title" content="Керемет — все услуги для студентов КазНУ в одном окне">
+  <meta property="og:description" content="Концепт нового сайта центра обслуживания студентов «Керемет».">
+  <meta property="og:image" content="https://olop4ik.github.io/keremet-concept/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ru_KZ">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <script>
+    // До первой отрисовки: язык и скрытый баннер, чтобы страница не мигала.
+    (function () {
+      var root = document.documentElement, langs = ['ru', 'kz', 'en'], l = 'ru';
+      try {
+        var q = new URLSearchParams(location.search).get('lang');
+        var s = localStorage.getItem('keremet-lang');
+        l = langs.indexOf(q) > -1 ? q : (langs.indexOf(s) > -1 ? s : 'ru');
+        if (sessionStorage.getItem('keremet-concept') === 'hidden') root.classList.add('concept-off');
+      } catch (e) { /* без хранилища — русский по умолчанию */ }
+      root.lang = l === 'kz' ? 'kk' : l;
+      if (l !== 'ru') {
+        root.classList.add('i18n-pending');
+        setTimeout(function () { root.classList.remove('i18n-pending'); }, 1500);
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@500;700&display=swap">
+  <link rel="preload" as="image" imagesrcset="img/hall-sm.webp 720w, img/hall.webp 1280w" imagesizes="(max-width: 960px) 100vw, 48vw" media="(min-width: 641px)" fetchpriority="high">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main" data-i18n="skip">Перейти к содержимому</a>
+
+  <aside class="concept" id="concept" data-i18n-aria="conceptLabel" aria-label="О концепте">
+    <div class="wrap concept__in">
+      <p><span data-i18n="concept">Концепт нового сайта ЦОС «Керемет». Это не официальный сайт.</span>
+        <a href="https://keremet.kaznu.kz" target="_blank" rel="noopener" data-i18n="conceptOld">Действующий сайт</a></p>
+      <button type="button" class="concept__close" id="conceptClose" data-i18n-aria="conceptClose" aria-label="Скрыть">
+        <svg aria-hidden="true" width="16" height="16"><use href="#i-x"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <header class="top" id="top">
+    <div class="wrap top__in">
+      <a class="brand" href="#main" data-i18n-aria="brandAria" aria-label="Керемет, в начало страницы">
+        <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true"><use href="#logo"/></svg>
+        <span class="brand__text">
+          <span class="brand__name" data-i18n="brandName">Керемет</span>
+          <span class="brand__sub" data-i18n="brandSub">Центр обслуживания студентов КазНУ</span>
+        </span>
+      </a>
+
+      <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="nav" data-i18n-aria="menu" aria-label="Меню">
+        <svg aria-hidden="true" width="22" height="22"><use href="#i-menu"/></svg>
+      </button>
+
+      <nav class="nav" id="nav" data-i18n-aria="navLabel" aria-label="Основное меню">
+        <a href="#services" data-i18n="navServices">Услуги</a>
+        <a href="#online" data-i18n="navOnline">Онлайн</a>
+        <a href="#contacts" data-i18n="navContacts">Куда звонить</a>
+        <a href="#campus" data-i18n="navCampus">Кампус</a>
+        <a class="nav__cta" href="#appeal" data-i18n="navAppeal">Написать в центр</a>
+      </nav>
+
+      <div class="langs" role="group" aria-label="Язык / Тіл / Language">
+        <button type="button" data-lang="kz" lang="kk">KZ</button>
+        <button type="button" data-lang="ru" lang="ru" aria-pressed="true">RU</button>
+        <button type="button" data-lang="en" lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero">
+      <div class="wrap hero__in">
+        <div class="hero__copy">
+          <h1 data-i18n="heroTitle">Все услуги для студентов в одном окне</h1>
+          <p class="hero__lead" data-i18n="heroLead">Справки, транскрипт, академический отпуск, стипендия, медицина и быт. Найдите нужную услугу и узнайте, куда обратиться.</p>
+
+          <form class="finder" role="search" id="finder" autocomplete="off">
+            <label for="q" class="finder__label" data-i18n="searchLabel">Что вам нужно?</label>
+            <div class="finder__box">
+              <svg aria-hidden="true" width="22" height="22"><use href="#i-search"/></svg>
+              <input id="q" type="search" enterkeyhint="search" data-i18n-ph="searchPlaceholder" placeholder="Например: транскрипт" aria-describedby="finderStatus" aria-controls="results">
+              <button type="button" class="finder__clear" id="qClear" hidden data-i18n-aria="clear" aria-label="Очистить поиск">
+                <svg aria-hidden="true" width="18" height="18"><use href="#i-x"/></svg>
+              </button>
+            </div>
+            <p class="sr" id="finderStatus" aria-live="polite"></p>
+            <ol class="results" id="results" hidden></ol>
+            <div class="chips" id="chips">
+              <span class="chips__label" data-i18n="popular">Часто ищут</span>
+            </div>
+          </form>
+        </div>
+
+        <div class="hero__visual">
+          <picture>
+            <source media="(max-width: 640px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+            <img class="hero__photo" src="img/hall.webp" srcset="img/hall-sm.webp 720w, img/hall.webp 1280w" sizes="(max-width: 960px) 100vw, 48vw" width="1280" height="854" fetchpriority="high" alt="Зал обслуживания центра «Керемет»: студенты у окон приёма" data-i18n-alt="heroAlt">
+          </picture>
+          <div class="ticket-wrap" aria-hidden="true">
+            <div class="ticket">
+              <div class="ticket__head">
+                <svg viewBox="0 0 40 40"><use href="#logo"/></svg>
+                <span data-i18n="ticketLabel">Ваш талон</span>
+              </div>
+              <div class="ticket__big">500+</div>
+              <div class="ticket__text" data-i18n="ticketText">услуг под одной крышей</div>
+              <div class="ticket__foot">
+                <span><span data-i18n="ticketWindow">Окно</span>: <b data-i18n="ticketAny">любое</b></span>
+                <span class="ticket__code">A-001</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="services" aria-labelledby="servicesTitle">
+      <div class="wrap">
+        <header class="block__head">
+          <h2 id="servicesTitle" data-i18n="servicesTitle">Услуги центра</h2>
+          <p data-i18n="servicesLead">Шесть направлений в одном здании. Откройте раздел, чтобы увидеть офисы, услуги и внутренние номера.</p>
+        </header>
+        <div class="cats" id="cats"></div>
+      </div>
+    </section>
+
+    <section class="block block--tint" id="online" aria-labelledby="onlineTitle">
+      <div class="wrap">
+        <header class="block__head">
+          <h2 id="onlineTitle" data-i18n="onlineTitle">Онлайн-услуги</h2>
+          <p data-i18n="onlineLead">Эти заявки подаются без визита в центр, через личный кабинет univer.kaznu.kz.</p>
+        </header>
+        <div class="online" id="onlineList"></div>
+      </div>
+    </section>
+
+    <section class="block" id="contacts" aria-labelledby="contactsTitle">
+      <div class="wrap contacts">
+        <div class="contacts__main">
+          <h2 id="contactsTitle" data-i18n="contactsTitle">Куда звонить</h2>
+          <p data-i18n="contactsLead">Наберите общий номер, затем внутренний номер офиса.</p>
+          <a class="bigphone" id="bigPhone" href="tel:+77273773333">+7&nbsp;(727)&nbsp;377-33-33</a>
+
+          <div class="faculty">
+            <label for="faculty" data-i18n="facultyLabel">Ваш факультет</label>
+            <div class="select">
+              <select id="faculty"></select>
+              <svg aria-hidden="true" width="18" height="18"><use href="#i-down"/></svg>
+            </div>
+            <div class="faculty__out" id="facultyOut" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="contacts__dir">
+          <h3 data-i18n="directoryTitle">Офисы и службы</h3>
+          <ul class="dir" id="directory"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block block--tint" id="campus" aria-labelledby="campusTitle">
+      <div class="wrap">
+        <header class="block__head">
+          <h2 id="campusTitle" data-i18n="campusTitle">Кампус</h2>
+          <p data-i18n="campusLead">Кафе, прачечная, магазины и зона отдыха. Всё рядом с аудиториями.</p>
+        </header>
+        <ul class="mosaic" id="mosaic"></ul>
+        <ul class="pills" id="campusLinks"></ul>
+      </div>
+    </section>
+
+    <section class="block" id="appeal" aria-labelledby="appealTitle">
+      <div class="wrap appeal">
+        <div class="appeal__intro">
+          <h2 id="appealTitle" data-i18n="appealTitle">Центр обращений</h2>
+          <p data-i18n="appealLead">Вопрос, жалоба или предложение. Напишите, и обращение попадёт в нужный офис.</p>
+          <img src="img/consult-sm.webp" width="720" height="480" loading="lazy" alt="" class="appeal__photo">
+        </div>
+
+        <form class="form" id="appealForm" novalidate>
+          <div class="field">
+            <label for="fName" data-i18n="fName">Имя</label>
+            <input id="fName" name="name" type="text" autocomplete="name" required aria-describedby="fNameErr">
+            <p class="field__err" id="fNameErr"></p>
+          </div>
+          <div class="field">
+            <label for="fEmail" data-i18n="fEmail">Почта для ответа</label>
+            <input id="fEmail" name="email" type="email" autocomplete="email" required aria-describedby="fEmailErr">
+            <p class="field__err" id="fEmailErr"></p>
+          </div>
+          <div class="field">
+            <label for="fTopic" data-i18n="fTopic">Кому</label>
+            <div class="select">
+              <select id="fTopic" name="topic"></select>
+              <svg aria-hidden="true" width="18" height="18"><use href="#i-down"/></svg>
+            </div>
+          </div>
+          <div class="field">
+            <label for="fMessage" data-i18n="fMessage">Сообщение</label>
+            <textarea id="fMessage" name="message" rows="5" required aria-describedby="fMessageErr"></textarea>
+            <p class="field__err" id="fMessageErr"></p>
+          </div>
+          <button class="btn" type="submit" data-i18n="fSend">Отправить обращение</button>
+          <p class="form__note" data-i18n="fDemo">В концепте форма ничего не отправляет.</p>
+          <p class="form__done" id="formDone" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <div class="foot__about">
+        <a class="brand brand--light" href="#main" data-i18n-aria="brandAria" aria-label="Керемет, в начало страницы">
+          <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true"><use href="#logo"/></svg>
+          <span class="brand__text"><span class="brand__name" data-i18n="brandName">Керемет</span></span>
+        </a>
+        <p data-i18n="footerAbout">ЦОС «Керемет» Казахского национального университета имени аль-Фараби. Более 500 учебных, медицинских, социальных и бытовых услуг по принципу одного окна.</p>
+      </div>
+      <div>
+        <h2 class="foot__h" data-i18n="footerContacts">Контакты</h2>
+        <ul class="foot__list" id="footContacts"></ul>
+      </div>
+      <div>
+        <h2 class="foot__h" data-i18n="footerLinks">Полезные ссылки</h2>
+        <ul class="foot__list" id="footLinks"></ul>
+      </div>
+    </div>
+    <div class="wrap foot__bottom">
+      <span>© <span id="year">2026</span> <span data-i18n="rights">Казахский национальный университет имени аль-Фараби</span></span>
+      <span data-i18n="footerConcept">Концепт редизайна, не официальный сайт.</span>
+    </div>
+  </footer>
+
+  <dialog class="drawer" id="drawer" aria-labelledby="drawerTitle">
+    <div class="drawer__head">
+      <h2 id="drawerTitle">&nbsp;</h2>
+      <button type="button" class="drawer__close" id="drawerClose" data-i18n-aria="close" aria-label="Закрыть">
+        <svg aria-hidden="true" width="22" height="22"><use href="#i-x"/></svg>
+      </button>
+    </div>
+    <div class="drawer__body" id="drawerBody"></div>
+  </dialog>
+
+  <svg class="sprite" width="0" height="0" aria-hidden="true">
+    <symbol id="logo" viewBox="0 0 40 40">
+      <rect width="40" height="40" rx="11" fill="#0F2442"/>
+      <rect x="9" y="9" width="22" height="22" rx="5" fill="#00A3C6"/>
+      <path d="M9 22h22v4a5 5 0 0 1-5 5H14a5 5 0 0 1-5-5Z" fill="#F5B700"/>
+      <path d="M9 22h22" stroke="#0F2442" stroke-width="2"/>
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></g></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6m0-6-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></g></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></g></symbol>
+    <symbol id="i-book" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 6h8a3 3 0 0 1 3 3v17a2 2 0 0 0-2-2H6Z"/><path d="M26 6h-6a3 3 0 0 0-3 3v17a2 2 0 0 1 2-2h7Z"/></g></symbol>
+    <symbol id="i-cross" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="5" y="5" width="22" height="22" rx="6"/><path d="M16 10v12M10 16h12" stroke-linecap="round"/></g></symbol>
+    <symbol id="i-heart" viewBox="0 0 32 32"><path d="M16 26s-10-6-10-13a5.5 5.5 0 0 1 10-3 5.5 5.5 0 0 1 10 3c0 7-10 13-10 13Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-people" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="11" r="4"/><circle cx="22" cy="12" r="3"/><path d="M4 25a8 8 0 0 1 16 0M19 20a6 6 0 0 1 9 5"/></g></symbol>
+    <symbol id="i-bag" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 11h20l-1.5 15h-17Z"/><path d="M12 11V9a4 4 0 0 1 8 0v2" stroke-linecap="round"/></g></symbol>
+    <symbol id="i-film" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="5" y="8" width="22" height="16" rx="3"/><path d="m14 12 6 4-6 4Z"/></g></symbol>
+  </svg>
+
+  <script src="js/data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
